@@ -1,0 +1,30 @@
+<h1>
+	Hello! @<%= @time%>
+</h1>
+<div>
+	<%= link_to 'Hot Movies', movies_hot_path %>
+	<%= link_to 'Coming Soon', movies_comingsoon_path %>
+	<%= link_to 'Weekly Top Movies', movies_weekly_path %>
+</div>
+
+<div>
+	<p>Search</p>
+	<%= form_tag root_path do %>
+	  <%= text_field_tag :search, params[:search] %>
+	  <%= submit_tag 'Search', name: nil %>
+	<% end %>
+</div>
+
+<table>
+	<tbody>
+		<% @searchmovies.each do |movie| %>
+			<tr>
+				<td><%= image_tag movie['images']['medium']%></td>
+				<td><%= movie['title']%></td>
+				<td><%= movie['original_title']%></td>
+				<td><%= movie['rating']['average']%></td>
+				<td><%= movie['year']%></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
